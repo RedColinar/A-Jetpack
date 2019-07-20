@@ -44,8 +44,13 @@ class SplashFragment : Fragment() {
             // action 或者 destination id
             // navController.navigate(R.id.loginFragment)
             navController.navigate(
-                R.id.action_splashFragment_to_loginFragment,
-                null,
+                R.id.action_splashFragment_to_loginFragment, null,
+                defaultNavOption()
+            )
+        }
+        bt_to_advertisement.setOnClickListener {
+            navController.navigate(
+                R.id.action_splashFragment_to_advertisementFragment, null,
                 defaultNavOption()
             )
         }
