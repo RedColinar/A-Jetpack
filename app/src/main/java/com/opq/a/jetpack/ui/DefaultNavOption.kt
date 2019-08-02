@@ -1,6 +1,7 @@
-package com.opq.a.jetpack
+package com.opq.a.jetpack.ui
 
 import androidx.navigation.navOptions
+import com.opq.a.jetpack.R
 
 /**
  * Created by panqiang at 2019-06-29

@@ -1,9 +1,10 @@
-package com.opq.a.jetpack
+package com.opq.a.jetpack.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.opq.a.jetpack.R
 
 class MainActivity : AppCompatActivity() {
 

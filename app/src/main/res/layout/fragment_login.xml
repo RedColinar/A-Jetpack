@@ -7,17 +7,17 @@
 
         <!--<variable-->
             <!--name="user"-->
-            <!--type="com.opq.a.jetpack.User" />-->
+            <!--type="com.opq.a.jetpack.ui.User" />-->
 
         <variable
             name="vm"
-            type="com.opq.a.jetpack.UserViewModel" />
+            type="com.opq.a.jetpack.ui.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".LoginFragment">
+        tools:context=".ui.LoginFragment">
 
         <TextView
             android:layout_width="wrap_content"

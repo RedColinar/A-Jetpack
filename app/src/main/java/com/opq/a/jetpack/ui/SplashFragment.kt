@@ -1,4 +1,4 @@
-package com.opq.a.jetpack
+package com.opq.a.jetpack.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.opq.a.jetpack.R
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 private const val ARG_PARAM1 = "param1"
