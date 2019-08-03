@@ -23,7 +23,7 @@ class AddSalariedEmployee(
     override val empId: Int,
     override val name:String,
     override val address: String,
-    val salary: Double
+    private val salary: Double
 ) : AddEmployeeTransaction(empId, name, address) {
 
     override fun getClassification(): PaymentClassification = SalariedClassification(salary)
@@ -31,6 +31,27 @@ class AddSalariedEmployee(
     override fun getSchedule(): PaymentSchedule = MonthlySchedule()
 }
 
-class AddHourlyEmployee()
+class AddHourlyEmployee(
+    override val empId: Int,
+    override val name:String,
+    override val address: String,
+    private val hourlyRate: Double
+) : AddEmployeeTransaction(empId, name, address) {
 
-class AddCommissionedEmployee()
+    override fun getClassification(): PaymentClassification = HourlyClassification(hourlyRate)
+
+    override fun getSchedule(): PaymentSchedule = WeeklySchedule()
+}
+
+class AddCommissionedEmployee(
+    override val empId: Int,
+    override val name:String,
+    override val address: String,
+    private val salary: Double,
+    private val commissionRate: Double
+) : AddEmployeeTransaction(empId, name, address) {
+
+    override fun getClassification(): PaymentClassification = CommissionedClassification(commissionRate, salary)
+
+    override fun getSchedule(): PaymentSchedule = BiweeklySchedule()
+}
