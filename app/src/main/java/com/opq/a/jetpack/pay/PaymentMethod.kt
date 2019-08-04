@@ -1,9 +1,23 @@
 package com.opq.a.jetpack.pay
 
-interface PaymentMethod
+interface PaymentMethod {
+    fun pay(payCheck: PayCheck)
+}
 
-class MailMethod : PaymentMethod
+class MailMethod : PaymentMethod {
+    override fun pay(payCheck: PayCheck) {
 
-class HoldMethod : PaymentMethod
+    }
+}
 
-class DirectMethod : PaymentMethod
+class HoldMethod : PaymentMethod {
+    override fun pay(payCheck: PayCheck) {
+
+    }
+}
+
+class DirectMethod : PaymentMethod {
+    override fun pay(payCheck: PayCheck) {
+
+    }
+}

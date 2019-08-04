@@ -5,7 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.*
 
-class PayTest {
+class EmployeeTest {
     @Test
     fun testAddSalariedEmployee() {
         val empId = 1

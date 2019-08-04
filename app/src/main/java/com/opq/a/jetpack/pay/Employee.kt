@@ -1,6 +1,8 @@
 package com.opq.a.jetpack.pay
 
 import android.annotation.SuppressLint
+import java.util.*
+import kotlin.collections.HashMap
 
 data class Employee(
     val id: Int,
@@ -24,5 +26,26 @@ data class Employee(
 
     fun removeAffiliation(memberId: Int) {
         affiliations.remove(memberId)
+    }
+
+    fun isPayDay(payDay: Date): Boolean {
+        return paymentSchedule.isPayDay(payDay)
+    }
+
+    fun payDay(payCheck: PayCheck) {
+        val grossPay = paymentClassification.calculatePay(payCheck)
+        var deductions = 0.0
+        for (affiliation in affiliations.values) {
+            deductions += affiliation.calculateDeductions(payCheck)
+        }
+        val netPay = grossPay - deductions
+        payCheck.grossPay = grossPay
+        payCheck.deductions = deductions
+        payCheck.netPay = netPay
+        paymentMethod.pay(payCheck)
+    }
+
+    fun getPayStartDate(payDay: Date): Date {
+        return paymentSchedule.getPayStartDate(payDay)
     }
 }

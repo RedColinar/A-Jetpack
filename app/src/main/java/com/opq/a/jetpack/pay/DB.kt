@@ -21,6 +21,10 @@ fun containsEmployee(empId: Int): Boolean {
     return employeeMap.contains(empId)
 }
 
+fun getAllEmployees() : List<Employee> {
+    return employeeMap.values.toList()
+}
+
 @SuppressLint("UseSparseArrays")
 private val affiliationMap = HashMap<Int, Employee>()
 
