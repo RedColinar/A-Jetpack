@@ -1,4 +1,4 @@
-package com.opq.a.jetpack
+package com.opq.a.jetpack.pay
 
 import com.opq.a.jetpack.pay.*
 import junit.framework.Assert.assertEquals
