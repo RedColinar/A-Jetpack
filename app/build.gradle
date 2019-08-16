@@ -36,6 +36,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "com.squareup.okhttp3:okhttp:4.0.1"
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC1"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

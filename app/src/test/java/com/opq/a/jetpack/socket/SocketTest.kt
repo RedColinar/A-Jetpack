@@ -1,7 +1,6 @@
 package com.opq.a.jetpack.socket
 
 import okhttp3.*
-import okhttp3.internal.wait
 import okio.ByteString
 import org.junit.Test
 import java.util.concurrent.TimeUnit
