@@ -7,6 +7,7 @@ import io.reactivex.internal.operators.observable.ObservableDoOnEach
 import io.reactivex.internal.operators.observable.ObservableFromArray
 import io.reactivex.internal.operators.observable.ObservableSubscribeOn
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
 import org.junit.Test
 
 class RxJavaTest {
@@ -29,4 +30,27 @@ class RxJavaTest {
         Thread.sleep(10 * 1000)
     }
 
+    @Test
+    fun testCoroutine() = runBlocking {
+        GlobalScope.launch {
+
+        }
+        launch {
+            delay(200L)
+            println("Task from runBlocking")
+        }
+
+        println("Coroutine scope is not over")
+        coroutineScope {
+            launch {
+                delay(500L)
+                println("Task from nested launch")
+            }
+
+            delay(100L)
+            println("Task from coroutine scope") // 这一行会在内嵌 launch 之前输出
+        }
+
+        println("Coroutine scope is over")
+    }
 }
