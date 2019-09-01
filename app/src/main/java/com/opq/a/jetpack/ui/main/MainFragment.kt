@@ -1,14 +1,19 @@
-package com.opq.a.jetpack.ui
+package com.opq.a.jetpack.ui.main
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.opq.a.jetpack.R
+import kotlinx.android.synthetic.main.fragment_main.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+val mainHandler = Handler(Looper.getMainLooper())
 
 class MainFragment : Fragment() {
     private var param1: String? = null
@@ -27,6 +32,11 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        vTitleLayout.effectByOffset(0)
     }
 
     companion object {

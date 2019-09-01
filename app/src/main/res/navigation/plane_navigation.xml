@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/plane_navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.opq.a.jetpack.ui.MainFragment"
+        android:name="com.opq.a.jetpack.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 
