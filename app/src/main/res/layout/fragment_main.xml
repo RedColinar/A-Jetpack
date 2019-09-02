@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
+    <com.opq.a.jetpack.ui.main.PageLayout
+        android:id="@+id/vPageLayout"
+        android:layout_marginTop="202dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.opq.a.jetpack.ui.main.TitleLayout
         android:id="@+id/vTitleLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/color_fafafa" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
