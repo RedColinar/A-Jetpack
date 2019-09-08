@@ -2,6 +2,7 @@ package com.opq.a.jetpack.ui.main
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.opq.a.jetpack.R
@@ -9,6 +10,7 @@ import com.opq.a.jetpack.R
 class PageLayoutBehavior(context: Context, attr: AttributeSet) :
     CoordinatorLayout.Behavior<PageLayout>(context, attr) {
 
+    private lateinit var selfView: PageLayout
     private lateinit var layTitle: TitleLayout
 
     private var simpleTopDistance = 0
@@ -30,7 +32,7 @@ class PageLayoutBehavior(context: Context, attr: AttributeSet) :
         child: PageLayout,
         layoutDirection: Int
     ): Boolean {
-
+        selfView = child
         val lp = child.layoutParams as CoordinatorLayout.LayoutParams
         if (lp.height == CoordinatorLayout.LayoutParams.MATCH_PARENT) {
             simpleTopDistance = lp.topMargin - layTitle.height
@@ -70,6 +72,7 @@ class PageLayoutBehavior(context: Context, attr: AttributeSet) :
         consumed: IntArray,
         type: Int
     ) {
+        Log.d("Behavior", "onNestedPreScroll")
         val ableToScrollUp = child.translationY == 0f && dy > 0
         val ableToScrollDown = child.translationY < 0
         if (!child.canNestedScrollVertically() && (ableToScrollDown || ableToScrollUp)) {
@@ -81,5 +84,57 @@ class PageLayoutBehavior(context: Context, attr: AttributeSet) :
                 consumed[1] = dy
             }
         }
+    }
+
+    override fun onNestedScrollAccepted(
+        coordinatorLayout: CoordinatorLayout,
+        child: PageLayout,
+        directTargetChild: View,
+        target: View,
+        axes: Int,
+        type: Int
+    ) {
+        Log.d("Behavior", "onNestedScrollAccepted")
+        super.onNestedScrollAccepted(
+            coordinatorLayout,
+            child,
+            directTargetChild,
+            target,
+            axes,
+            type
+        )
+    }
+
+    override fun onStopNestedScroll(
+        coordinatorLayout: CoordinatorLayout,
+        child: PageLayout,
+        target: View,
+        type: Int
+    ) {
+        super.onStopNestedScroll(coordinatorLayout, child, target, type)
+        Log.d("Behavior", "onStopNestedScroll scrollering ")
+    }
+
+    override fun onNestedPreFling(
+        coordinatorLayout: CoordinatorLayout,
+        child: PageLayout,
+        target: View,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
+        Log.d("Behavior", "onNestedPreFling scrollering ")
+        return super.onNestedPreFling(coordinatorLayout, child, target, velocityX, velocityY)
+    }
+
+    override fun onNestedFling(
+        coordinatorLayout: CoordinatorLayout,
+        child: PageLayout,
+        target: View,
+        velocityX: Float,
+        velocityY: Float,
+        consumed: Boolean
+    ): Boolean {
+        Log.d("Behavior", "onNestedFling")
+        return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed)
     }
 }
