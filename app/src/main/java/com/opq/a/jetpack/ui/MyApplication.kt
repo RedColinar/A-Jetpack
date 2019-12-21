@@ -17,6 +17,6 @@ class MyApplication : Application() {
         super.onCreate()
         app = this
         JetpackDatabase.instance()
-        Stetho.initializeWithDefaults(this)
+        // Stetho.initializeWithDefaults(this)
     }
 }
