@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import com.opq.a.jetpack.R
 import com.opq.a.jetpack.ui.main.Candy.dp2px
 
@@ -33,7 +34,11 @@ class TitleLayout @JvmOverloads constructor(
         val fraction = adInterpolator.getInterpolation(offset / offsetMax)
 
         setBackgroundColor(
-            argbEvaluator.evaluate(fraction, Color.TRANSPARENT, Color.WHITE) as Int
+            argbEvaluator.evaluate(
+                fraction,
+                ContextCompat.getColor(context, R.color.colorPrimary),
+                Color.TRANSPARENT
+            ) as Int
         )
 
         return fraction
