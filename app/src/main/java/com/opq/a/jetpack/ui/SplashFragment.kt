@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.opq.a.jetpack.R
+import com.opq.a.jetpack.db.JetpackDatabase
+import com.opq.a.jetpack.db.UserEntity
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 private const val ARG_PARAM1 = "param1"
@@ -55,6 +57,8 @@ class SplashFragment : Fragment() {
                 defaultNavOption()
             )
         }
+
+        JetpackDatabase.instance().userEntityDao().insertAll(UserEntity("1", "opq"))
     }
 
     companion object {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     tools:context=".ui.main.MainFragment">
 
     <com.opq.a.jetpack.ui.main.PageLayout
@@ -15,7 +16,6 @@
     <com.opq.a.jetpack.ui.main.TitleLayout
         android:id="@+id/vTitleLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_fafafa" />
+        android:layout_height="wrap_content" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
