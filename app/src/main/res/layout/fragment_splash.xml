@@ -21,8 +21,8 @@
         android:id="@+id/bt_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="登陆"
         android:layout_margin="50dp"
+        android:text="登陆"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline" />
 
@@ -30,8 +30,8 @@
         android:id="@+id/bt_to_advertisement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="广告"
         android:layout_margin="50dp"
+        android:text="广告"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline" />
 
@@ -41,5 +41,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:id="@+id/bt_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

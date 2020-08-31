@@ -1,31 +1,28 @@
 package com.opq.a.jetpack.ui
 
 import android.content.Context
-import android.net.LocalServerSocket
-import android.net.LocalSocket
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.facebook.stetho.common.LogUtil
 import com.opq.a.jetpack.R
 import com.opq.a.jetpack.db.JetpackDatabase
 import com.opq.a.jetpack.db.UserEntity
 import kotlinx.android.synthetic.main.fragment_splash.*
-
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
-import java.io.InterruptedIOException
-import java.net.SocketException
+import kotlinx.coroutines.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+private const val TAG = "SplashFragment"
 
 class SplashFragment : Fragment() {
     private var param1: String? = null
@@ -71,60 +68,46 @@ class SplashFragment : Fragment() {
 
         JetpackDatabase.instance().userEntityDao().insertAll(UserEntity("1", "opq"))
 
-        listenDevTool()
+        bt_tip.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Main) {
+                if (!pop()) return@launch
+                if (!pop()) return@launch
+            }
+        }
+    }
+
+    private suspend fun pop(): Boolean = suspendCoroutine {
+        AlertDialog.Builder(requireContext())
+            .setMessage("标题")
+            .setNegativeButton("取消") { d, _ ->
+                d.dismiss()
+                it.resume(false)
+            }
+            .setPositiveButton("确定") { d, _ ->
+                d.dismiss()
+                it.resume(true)
+            }
+            .create().show()
+    }
+
+    private fun api(): String {
+        Thread.sleep(1000)
+        return "yes!"
+    }
+
+    private fun toast(text: String) {
+        Toast.makeText(
+            this@SplashFragment.requireContext(), text, Toast.LENGTH_SHORT
+        ).show()
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SplashFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        fun newInstance(param1: String, param2: String) = SplashFragment().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM1, param1)
+                putString(ARG_PARAM2, param2)
             }
-    }
-
-    private fun listenDevTool() {
-        // chrome://inspect/#devices
-        val thread = Thread {
-            val address = "opq_devtools_remote"
-            val serverSocket = LocalServerSocket(address)
-            LogUtil.i("Listening on @$address")
-
-            while (!Thread.interrupted()) {
-                try {
-                    val socket: LocalSocket = serverSocket.accept()
-                    // Start worker thread
-//                    val t: Thread = LocalSocketServer.WorkerThread(socket, mSocketHandler)
-//                    t.name = LocalSocketServer.WORKER_THREAD_NAME_PREFIX +
-//                            "-" + mFriendlyName +
-//                            "-" + mThreadId.incrementAndGet()
-//                    t.isDaemon = true
-//                    t.start()
-                    val s = BufferedReader(InputStreamReader(socket.inputStream, "UTF-8"))
-                    s.forEachLine {
-                        Log.d(address, it)
-                    }
-                } catch (se: SocketException) { // ignore exception if interrupting the thread
-                    if (Thread.interrupted()) {
-                        break
-                    }
-                    Log.d(address, "I/O error")
-                } catch (ex: InterruptedIOException) {
-                    break
-                } catch (e: IOException) {
-                    LogUtil.w(
-                        address,
-                        "I/O error initialising connection thread"
-                    )
-                    break
-                }
-            }
-
-            Log.d(address, "Server shutdown on @$address")
         }
-        thread.isDaemon = true
-        thread.start()
     }
 }
